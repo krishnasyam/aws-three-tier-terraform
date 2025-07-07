@@ -1,53 +1,138 @@
-[10:47 am, 7/7/2025] +91 96067 71989: 🚀 OnFinance AI – Full Stack App Deployment on AWS EKS with Terraform
-This project implements a sample full-stack application deployed on AWS EKS using Terraform, with a strong focus on high availability, logging, monitoring, and security best practices. It is designed as part of the Implementation Engineer Assignment for OnFinance AI.
-[10:47 am, 7/7/2025] +91 96067 71989: 📌 Project Goals
-✅ High-Level Architecture Design – Secure, scalable, multi-AZ deployment on AWS
+🚀 OnFinance AI – Full Stack App Deployment on AWS EKS with Terraform
+This sample full-stack application—deployed on AWS EKS using Terraform—showcases high availability, logging, monitoring, and security best practices. It’s built as part of the Implementation Engineer Assignment for OnFinance AI.
 
-✅ Infrastructure as Code (IaC) – Modular Terraform templates for complete AWS provisioning
+📌 Project Goals
+✅ High‑Level Architecture Design
+Secure, scalable multi-AZ deployment on AWS.
 
-✅ Kubernetes Deployment – EKS-based deployment of backend and frontend applications
+✅ Infrastructure as Code (IaC)
+Modular Terraform templates to provision networking, EKS, RDS, IAM, etc.
 
-✅ Logging & Monitoring – Centralized logging (CloudWatch), alerts (SNS), and metrics (HPA)
+✅ Kubernetes Deployment
+EKS-based deployment of both backend and frontend applications.
 
-✅ CI/CD Integration (Bonus) – GitHub Actions pipeline + AWS ECR for Docker image management
-[10:52 am, 7/7/2025] +91 96067 71989: | Stage     | Description                                | Status         | Completion |
-| --------- | ------------------------------------------ | -------------- | ---------- |
-| *1*     | High-Level Architecture Design             | ✅ Completed    | 100%       |
-| *2*     | Terraform IaC – Networking + EKS + RDS     | ✅ Completed    | 100%       |
-| *3*     | Kubernetes Deployment (Backend + Frontend) | ✅ Completed    | 100%       |
-| *4*     | Centralized Logging + Monitoring + Alerts  | ✅ Completed    | 100%       |
-| *5*     | External API Integration via Lambda (ETL)  | ⚙️ In Progress | 40%        |
-| *Bonus* | CI/CD Pipeline with GitHub Actions + ECR   | ✅ Completed    | 100%       |
-[10:53 am, 7/7/2025] +91 96067 71989: AWS-3-Tier-_with_Terraform/
+✅ Logging & Monitoring
+Centralized logging (CloudWatch), alerts (SNS), and metrics (HPA).
+
+⚙️ External API Integration via Lambda (ETL)
+Building an external data ingestion pipeline. (In progress)
+
+✅ CI/CD Integration (Bonus)
+GitHub Actions pipeline + AWS ECR for Docker image management.
+
+🛠️ Project Status
+Stage	Description	Status	Completion
+1	High-Level Architecture Design	✅ Completed	100%
+2	Terraform IaC – Networking + EKS + RDS	✅ Completed	100%
+3	Kubernetes Deployment (Backend + Frontend)	✅ Completed	100%
+4	Centralized Logging + Monitoring + Alerts	✅ Completed	100%
+5	External API Integration via Lambda (ETL)	⚙️ In Progress	40%
+Bonus	CI/CD Pipeline with GitHub Actions + ECR	✅ Completed	100%
+
+📁 Project Structure
+graphql
+Copy
+Edit
+AWS-3-Tier_with_Terraform/
 ├── terraform/
-│   ├── vpc/                # VPC, subnets, route tables, IGW, NAT
-│   ├── eks/                # EKS cluster, node groups
-│   ├── rds/                # RDS database config
-│   └── iam/                # IAM roles & policies
+│   ├── vpc/        # VPC, subnets, route tables, IGW, NAT
+│   ├── eks/        # EKS cluster, node groups
+│   ├── rds/        # RDS database config
+│   └── iam/        # IAM roles & policies
 ├── k8s/
-│   ├── backend/            # Backend API Kubernetes manifests
-│   ├── frontend/           # Frontend web app manifests
-│   └── monitoring/         # Fluent Bit, CloudWatch agent, HPA config
-├── lambda/                 # Data ingestion via API (ETL)
-├── cicd/                   # GitHub Actions workflows
-├── outputs/                # Screenshots, logs, sample output
-└── README.md
-[10:53 am, 7/7/2025] +91 96067 71989: 🔧 Prerequisites
-AWS CLI configured (aws configure)
+│   ├── backend/    # Backend API Kubernetes manifests
+│   ├── frontend/   # Frontend web app manifests
+│   └── monitoring/ # Fluent Bit, CloudWatch agent, HPA config
+├── lambda/         # Data ingestion via API (ETL)
+├── cicd/           # GitHub Actions workflows
+├── outputs/        # Screenshots, logs, sample output
+└── README.md       # This file
+🔧 Prerequisites
+Ensure the following are installed and configured:
 
-Terraform >= v1.3 installed
+AWS CLI (aws configure)
 
-kubectl installed and configured
+Terraform v1.3+
 
-Docker installed
+kubectl
 
-GitHub account with repository access
+Docker
 
-IAM user with permissions to create AWS resources
-[10:55 am, 7/7/2025] +91 96067 71989: 🚀 Setup & Deployment Instructions
-🏗️ Step 1: Clone Repository
+GitHub account with repo access
+
+IAM user with AWS provisioning permissions
+
+🚀 Setup & Deployment Instructions
+🏗️ Step 1: Clone the Repository
 bash
 Copy
 Edit
 git clone https://github.com/ramankrishnan/AWS-3-Tier-_with_Terraform.git
-cd AWS-3-Tier-_with_Terraform/
+cd AWS-3-Tier_with_Terraform/
+🧩 Step 2: Provision Infrastructure
+bash
+Copy
+Edit
+cd terraform/vpc
+terraform init && terraform apply -auto-approve
+
+cd ../eks
+terraform init && terraform apply -auto-approve
+
+cd ../rds
+terraform init && terraform apply -auto-approve
+
+cd ../iam
+terraform init && terraform apply -auto-approve
+☸️ Step 3: Deploy Kubernetes Resources
+bash
+Copy
+Edit
+cd ../../k8s
+kubectl apply -f backend/
+kubectl apply -f frontend/
+kubectl apply -f monitoring/
+🧪 Step 4: Setup Observability
+Verify CloudWatch logs and metrics
+
+Check SNS alerts on threshold breaches
+
+🔄 (Optional) Step 5: Trigger Lambda ETL
+bash
+Copy
+Edit
+cd ../../lambda
+# package and deploy your Lambda function
+🤖 Bonus: CI/CD Pipeline
+Your GitHub Actions workflows (in cicd/) automate build, Docker push (to ECR), and apply deployments.
+
+✅ Outputs
+Screenshots, logs, and sample outputs are in the outputs/ directory to validate deployment steps.
+
+📝 Contributing
+Contributions are welcome! To contribute:
+
+Fork the repo
+
+Create a feature branch: git checkout -b feature/my-feature
+
+Commit your changes: git commit -m "Add my feature"
+
+Push the branch: git push origin feature/my-feature
+
+Open a Pull Request
+
+Follow standard Git workflow and code review guidelines.
+
+📄 License
+This project is released under the MIT License. See the LICENSE file for details.
+
+🙏 Acknowledgements
+OpenAI for the GPT model
+
+AWS for cloud infrastructure
+
+Terraform and Kubernetes communities
+
+StackOverflow for invaluable support
+
